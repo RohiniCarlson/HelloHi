@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+    </head>
+    <body>
+        <!--<<div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <form name="loginForm" ng-submit="submitForm()" ng-app="simpleChat" ng-controller="MessagesCtrl">
+                        <div class="control-group" ng-class="{true: 'error'}[submitted && ((loginForm.email.$invalid) || (loginForm.password.$invalid))]">
+                            <!--<label class="control-label" for="email">E-mejl address:</label>-->
+                            <!--<div class="controls">
+                                <input type="email" name="email" ng-model="email" placeholder="namn@example.com" required />
+                                <span class="help-inline" ng-show="submitted && loginForm.email.$error.required">Ange din e-postadress i formatet namn@example.com</span>
+                                <span class="help-inline" ng-show="submitted && loginForm.email.$error.email">Ange din e-postadress i formatet namn@example.com</span>       
+                            </div><br>
+                            <!--<label class="control-label" for="password">Lösenord:</label>-->
+                            <!--<div class="controls">
+                                 <input name="password" type="password" ng-model="password" placeholder="Lösenord" required />
+                                <span class="help-inline" ng-show="submitted && loginForm.password.$error.required">Ange SharpText- kontots lösenord</span>
+                            </div>
+                        </div><br>
+                        <button type="submit" class="btn btn-primary btn-large" ng-disabled="(form.$submitted && form.$invalid)" ng-click="submitted=true">Logga in</button>
+                    </form>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="container">
+            <div ng-app="loginAuthentication" ng-controller="LoginCtrl">
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="panel-group">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Logga in - SharpText</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <form name="loginForm" ng-submit="submitForm(loginForm.$valid)" novalidate method="post">
+                                        <!-- EMail-->
+                                        <div class="form-group clearfix" ng-class="{
+                                            'has-error': loginForm.$submitted && loginForm.email.$invalid,
+                                            'has-success': loginForm.$submitted && loginForm.email.$valid}">
+                                            <label class="col-sm-3 control-label" for="email">E-postadress</label>
+                                            <div class="col-sm-9">
+                                                <input id="email" name="email" class="form-control" type="email" ng-model="user.email" placeholder="namn@example.com" required autofocus></input>
+                                                <div class="alert alert-danger" ng-show="loginForm.$submitted && loginForm.email.$error.required">Du måste ange en e-postadress</div>
+                                                <div class="alert alert-danger" ng-cloak ng-show="loginForm.$submitted && loginForm.email.$error.email">Ange din e-postadress i formatet namn@example.com</div>
+                                                <!--<p class="help-block">What do your parents and friends call you?</p>-->
+                                            </div>
+                                        </div>
+                                        <!-- Password -->
+                                        <div class="form-group clearfix" ng-class="{
+                                            'has-error': loginForm.$submitted && loginForm.password.$invalid,
+                                            'has-success': loginForm.$submitted && loginForm.password.$valid}">
+                                            <label class="col-sm-3 control-label" for="password">Lösenord</label>
+                                            <div class="col-sm-9">
+                                                <input id="password" name="password" class="form-control" type="password" ng-model="user.password" placeholder="Lösenord" required></input>
+                                                <div class="alert alert-danger" ng-cloak ng-show="loginForm.$submitted && loginForm.password.$error.required">Du måste ange SharpText-kontots lösenord</div>
+                                                <!--<p class="help-block">Last name as it is written on your passport</p>-->
+                                            </div>
+                                        </div>
+                                        <!-- form controls-->
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary" ng-disabled="(loginForm.$submitted && loginForm.$invalid)">Logga in</button>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                    <div>
+                                        <p class="bg-info"><a href="#">Har du glömt ditt lösenord?</a></p>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <p class="bg-info"><a href="newaccount.html">Vill du skapa ett SharpText konto?</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- kept separate from the bootstrap markup to keep the code clean -->
+                <!--<script type="text/ng-template" id="form.html">
+                    <form name="loginForm" ng-submit="submitForm($event)" novalidate>
+                        <!-- EMail-->
+                        <!--<div class="form-group clearfix" ng-class="{
+                            'has-error': loginForm.$submitted && loginForm.email.$invalid,
+                            'has-success': loginForm.$submitted && loginForm.email.$valid}">
+                            <label class="col-sm-3 control-label" for="email">E-postadress</label>
+                            <div class="col-sm-9">
+                                <input id="email" name="email" class="form-control" type="email" ng-model="user.email" placeholder="namn@example.com" required autofocus></input>
+                                <div class="alert alert-danger" ng-show="loginForm.$submitted && loginForm.email.$error.required">Du måste ange en e-postadress</div>
+                                <div class="alert alert-danger" ng-show="loginForm.$submitted && loginForm.email.$error.email">Ange din e-postadress i formatet namn@example.com</div>
+                                <!--<p class="help-block">What do your parents and friends call you?</p>-->
+                            <!--</div>
+                        </div>
+                        <!-- Password -->
+                        <!--<div class="form-group clearfix" ng-class="{
+                            'has-error': loginForm.$submitted && loginForm.password.$invalid,
+                            'has-success': loginForm.$submitted && loginForm.password.$valid}">
+                            <label class="col-sm-3 control-label" for="password">Lösenord</label>
+                            <div class="col-sm-9">
+                                <input id="password" name="password" class="form-control" type="password" ng-model="user.password" placeholder="Lösenord" required></input>
+                                <div class="alert alert-danger" ng-show="loginForm.$submitted && loginForm.password.$error.required">Du måste ange SharpText-kontots lösenord</div>
+                                <!--<p class="help-block">Last name as it is written on your passport</p>-->
+                            <!--</div>
+                        </div>
+                        <!-- form controls-->
+                        <!--<div class="form-group">
+                            <button type="submit" class="btn btn-primary" ng-disabled="(loginForm.$submitted && loginForm.$invalid)">Logga in</button>
+                        </div>
+                    </form>
+                </script> -->          
+            </div>        
+        </div>
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+        <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+        <script type="text/javascript" script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+        <script type="text/javascript" src="js/index2.js"></script>
+    </body>
+</html>
